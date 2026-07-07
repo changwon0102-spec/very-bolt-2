@@ -137,7 +137,6 @@ export const Screen = (): JSX.Element => {
               <div className="bg-[linear-gradient(0deg,rgba(255,255,255,1)_0%,rgba(255,255,255,1)_50%,rgba(255,255,255,0)_100%)] pt-6 pb-5">
                 <div className="flex flex-col gap-3">
                   <Button className="h-auto w-full rounded-xl bg-black px-6 py-4 [font-family:'Abel',Helvetica] text-base font-normal leading-6 text-white shadow-[0px_8px_10px_-6px_#0000001a,0px_20px_25px_-5px_#0000001a] hover:bg-black">
-                    <a href="https://www.oliveyoung.co.kr/store/display/getCategoryShop.do?dispCatNo=10000010001&t_page=%EB%93%9C%EB%A1%9C%EC%9A%B0_%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC&t_click=%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%ED%83%AD_%EB%8C%80%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC&t_1st_category_type=%EB%8C%80_%EC%8A%A4%ED%82%A8%EC%BC%80%EC%96%B4miniCards" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" />
                     <span>내 피부 타입 찾기</span>
     
                   </Button>
