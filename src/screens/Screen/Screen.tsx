@@ -6,13 +6,13 @@ const featureCards = [
   {
     title: "1분 피부 고민 체크",
     description: ["나의 피부 타입과 고민을 정밀하게 분석", "합니다."],
-    icon: "/background.svg",
+    icon: "/src/screens/Screen/jammin.jpg",
     alt: "Background",
   },
   {
     title: "입문자용 제품만 추천",
     description: ["복잡한 단계 없이 꼭 필요한 필수템만 골", "라드려요."],
-    icon: "/background-border.svg",
+    icon: "src/screens/Screen/kid.jpg",
     alt: "Background border",
   },
 ];
@@ -21,13 +21,13 @@ const miniCards = [
   {
     title: "매장 테스트",
     description: ["무신사 뷰티 스토어에서 바", "로 확인"],
-    icon: "/margin.svg",
+    icon: "src/screens/Screen/smile.jpg",
     alt: "Margin",
   },
   {
     title: "샘플 후 재구매",
     description: ["샘플 써보고 앱에서 편하게", "결제"],
-    icon: "/margin-1.svg",
+    icon: "src/screens/Screen/smile.jpg",
     alt: "Margin",
   },
 ];
@@ -65,23 +65,18 @@ export const Screen = (): JSX.Element => {
                   모르겠다면?
                 </div>
                 <p className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-base font-medium leading-6 tracking-[0] text-[#4c4546]">
-                  1분만 투자하면 지금 필요한 제품만 추천해드려
-                  <br />
-                  요.
+                  1분만 투자하면 지금 필요한 제품만 추천해드려요.
                 </p>
               </div>
               <Card className="overflow-hidden rounded-2xl border-0 bg-[#e5eeff] shadow-[0px_1px_2px_#0000000d]">
                 <CardContent className="relative h-[340px] p-0">
-                  <div className="h-full w-full bg-[url(/ab6axuaw5qws79bxmipqaahxbyzg6hjrgzfrwugzzlgmwqty4loyacqtqba5uzks.png)] bg-cover bg-[50%_50%]" />
+                  <div className="h-full w-full bg-[url(src\screens\Screen\parkjy.jpg)] bg-cover bg-[50%_50%]" />
+                  <a href="https://www.musinsa.com/main/beauty/recommend?gf=A" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" />
                   <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(203,219,245,0.2)_0%,rgba(203,219,245,0)_100%)]" />
                   <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 shadow-[0px_4px_6px_-4px_#0000001a,0px_10px_15px_-3px_#0000001a]">
-                    <img
-                      className="relative h-auto w-auto flex-[0_0_auto]"
-                      alt="Container"
-                      src="/container.svg"
-                    />
+
                     <span className="[font-family:'Inter',Helvetica] text-xs font-normal leading-4 tracking-[1.20px] text-white">
-                      ONLY 1 MIN
+                      1분만 투자하세요!
                     </span>
                   </div>
                 </CardContent>
@@ -142,12 +137,9 @@ export const Screen = (): JSX.Element => {
               <div className="bg-[linear-gradient(0deg,rgba(255,255,255,1)_0%,rgba(255,255,255,1)_50%,rgba(255,255,255,0)_100%)] pt-6 pb-5">
                 <div className="flex flex-col gap-3">
                   <Button className="h-auto w-full rounded-xl bg-black px-6 py-4 [font-family:'Abel',Helvetica] text-base font-normal leading-6 text-white shadow-[0px_8px_10px_-6px_#0000001a,0px_20px_25px_-5px_#0000001a] hover:bg-black">
+                    <a href="https://www.oliveyoung.co.kr/store/display/getCategoryShop.do?dispCatNo=10000010001&t_page=%EB%93%9C%EB%A1%9C%EC%9A%B0_%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC&t_click=%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%ED%83%AD_%EB%8C%80%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC&t_1st_category_type=%EB%8C%80_%EC%8A%A4%ED%82%A8%EC%BC%80%EC%96%B4miniCards" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" />
                     <span>내 피부 타입 찾기</span>
-                    <img
-                      className="ml-2 h-3 w-3"
-                      alt="Container"
-                      src="/container-1.svg"
-                    />
+    
                   </Button>
                   <button
                     type="button"
