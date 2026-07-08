@@ -6,7 +6,7 @@ const featureCards = [
   {
     title: "1분 피부 고민 체크",
     description: ["나의 피부 타입과 고민을 정밀하게 분석", "합니다."],
-    icon: "src\screens\Screen\kid.jpg",
+    icon: "src/screens\Screen/kid.jpg",
     alt: "Background",
   },
   {
