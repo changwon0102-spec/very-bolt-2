@@ -6,7 +6,7 @@ const featureCards = [
   {
     title: "1분 피부 고민 체크",
     description: ["나의 피부 타입과 고민을 정밀하게 분석", "합니다."],
-    icon: "src\screens\Screen\jammin.jpg",
+    icon: "src\screens\Screen\kid.jpg",
     alt: "Background",
   },
   {
@@ -24,6 +24,8 @@ const miniCards = [
     icon: "src/screens/Screen/smile.jpg",
     alt: "Margin",
   },
+
+
   {
     title: "샘플 후 재구매",
     description: ["샘플 써보고 앱에서 편하게", "결제"],
