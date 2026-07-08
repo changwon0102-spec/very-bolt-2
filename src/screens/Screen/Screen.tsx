@@ -1,6 +1,8 @@
+import { useEffect, useMemo, useState } from "react";
 import { XIcon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
+import { supabase } from "../../lib/supabase";
 import kidImage from "./kid.jpg";
 import smileImage from "./smile.jpg";
 import parkjyImage from "./parkjy.jpg";
@@ -13,7 +15,22 @@ type ActionCard = {
   href?: string;
 };
 
-const featureCards: ActionCard[] = [
+type SupabaseActionRow = {
+  kind: "feature" | "mini" | "cta";
+  title: string;
+  description_line_1: string | null;
+  description_line_2: string | null;
+  icon_key: "kid" | "smile" | null;
+  href: string | null;
+  sort_order: number | null;
+};
+
+const iconMap = {
+  kid: kidImage,
+  smile: smileImage,
+};
+
+const defaultFeatureCards: ActionCard[] = [
   {
     title: "1분 피부 고민 체크",
     description: ["나의 피부 타입과 고민을 정밀하게 분석", "합니다."],
@@ -30,7 +47,7 @@ const featureCards: ActionCard[] = [
   },
 ];
 
-const miniCards: ActionCard[] = [
+const defaultMiniCards: ActionCard[] = [
   {
     title: "매장 테스트",
     description: ["무신사 뷰티 스토어에서 바", "로 확인"],
@@ -48,7 +65,7 @@ const miniCards: ActionCard[] = [
   },
 ];
 
-const ctaButtons = [
+const defaultCtaButtons = [
   {
     label: "내 피부 타입 찾기",
     href: "https://www.musinsa.com/main/beauty/recommend?gf=A",
@@ -60,6 +77,59 @@ const ctaButtons = [
 ];
 
 export const Screen = (): JSX.Element => {
+  const [supabaseActions, setSupabaseActions] = useState<SupabaseActionRow[]>([]);
+
+  useEffect(() => {
+    const loadActions = async () => {
+      const { data, error } = await supabase
+        .from("beauty_actions")
+        .select(
+          "kind,title,description_line_1,description_line_2,icon_key,href,sort_order",
+        )
+        .eq("is_active", true)
+        .order("sort_order", { ascending: true });
+
+      if (error) {
+        console.warn("[supabase] beauty_actions 조회 실패:", error.message);
+        return;
+      }
+
+      setSupabaseActions(data ?? []);
+    };
+
+    loadActions();
+  }, []);
+
+  const { featureCards, miniCards, ctaButtons } = useMemo(() => {
+    const toActionCard = (row: SupabaseActionRow): ActionCard => ({
+      title: row.title,
+      description: [
+        row.description_line_1 ?? "",
+        row.description_line_2 ?? "",
+      ],
+      icon: iconMap[row.icon_key ?? "kid"] ?? kidImage,
+      alt: row.title,
+      href: row.href ?? undefined,
+    });
+
+    const featureRows = supabaseActions.filter((row) => row.kind === "feature");
+    const miniRows = supabaseActions.filter((row) => row.kind === "mini");
+    const ctaRows = supabaseActions.filter((row) => row.kind === "cta");
+
+    return {
+      featureCards: featureRows.length
+        ? featureRows.map(toActionCard)
+        : defaultFeatureCards,
+      miniCards: miniRows.length ? miniRows.map(toActionCard) : defaultMiniCards,
+      ctaButtons: ctaRows.length
+        ? ctaRows.map((row) => ({
+            label: row.title,
+            href: row.href ?? undefined,
+          }))
+        : defaultCtaButtons,
+    };
+  }, [supabaseActions]);
+
   return (
     <main className="min-h-screen w-full bg-[linear-gradient(0deg,rgba(248,249,255,1)_0%,rgba(248,249,255,1)_100%),linear-gradient(0deg,rgba(255,255,255,1)_0%,rgba(255,255,255,1)_100%)]">
       <div className="mx-auto flex min-h-screen w-full max-w-[390px] justify-center px-0">
