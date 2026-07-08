@@ -81,6 +81,10 @@ export const Screen = (): JSX.Element => {
 
   useEffect(() => {
     const loadActions = async () => {
+      if (!supabase) {
+        return;
+      }
+
       const { data, error } = await supabase
         .from("beauty_actions")
         .select(
