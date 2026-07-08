@@ -5,35 +5,57 @@ import kidImage from "./kid.jpg";
 import smileImage from "./smile.jpg";
 import parkjyImage from "./parkjy.jpg";
 
-const featureCards = [
+type ActionCard = {
+  title: string;
+  description: string[];
+  icon: string;
+  alt: string;
+  href?: string;
+};
+
+const featureCards: ActionCard[] = [
   {
     title: "1분 피부 고민 체크",
     description: ["나의 피부 타입과 고민을 정밀하게 분석", "합니다."],
     icon: kidImage,
     alt: "Background",
+    href: "https://www.musinsa.com/main/beauty/recommend?gf=A",
   },
   {
     title: "입문자용 제품만 추천",
     description: ["복잡한 단계 없이 꼭 필요한 필수템만 골", "라드려요."],
     icon: kidImage,
     alt: "Background border",
+    href: "https://www.musinsa.com/products/680655",
   },
 ];
 
-const miniCards = [
+const miniCards: ActionCard[] = [
   {
     title: "매장 테스트",
     description: ["무신사 뷰티 스토어에서 바", "로 확인"],
     icon: smileImage,
     alt: "Margin",
+    href: "https://www.musinsa.com/main/beauty/recommend?gf=A",
   },
 
-
   {
-    title: "샘플 후 재구매",
+    title: "샘플 사용 후 재구매",
     description: ["샘플 써보고 앱에서 편하게", "결제"],
     icon: smileImage,
     alt: "Margin",
+    href: "https://www.musinsa.com/products/680655",
+  },
+];
+
+const ctaButtons = [
+  {
+    label: "내 피부 타입 찾기",
+    href: "https://www.musinsa.com/main/beauty/recommend?gf=A",
+  },
+  {
+    label: "설문 없이 제품 둘러보기",
+    href: "https://www.musinsa.com/main/beauty/recommend?gf=A",
   },
 ];
 
@@ -93,70 +115,110 @@ export const Screen = (): JSX.Element => {
                 </CardContent>
               </Card>
               <section className="flex flex-col gap-4">
-                {featureCards.map((card) => (
-                  <Card
-                    key={card.title}
-                    className="rounded-xl border border-solid border-[#cfc4c5] bg-[#eff4ff] shadow-none"
-                  >
-                    <CardContent className="flex items-center gap-4 p-4">
-                      <img
-                        className="h-12 w-12 shrink-0"
-                        alt={card.alt}
-                        src={card.icon}
-                      />
-                      <div className="flex flex-col">
-                        <h2 className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-base font-medium leading-6 tracking-[0] text-[#0b1c30]">
-                          {card.title}
-                        </h2>
-                        <p className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-sm font-medium leading-5 tracking-[0] text-[#4c4546]">
-                          {card.description[0]}
-                          <br />
-                          {card.description[1]}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-
-                <div className="grid grid-cols-2 gap-4">
-                  {miniCards.map((card) => (
-                    <Card
-                      key={card.title}
-                      className="rounded-xl border border-solid border-[#cfc4c5] bg-[#eff4ff] shadow-none"
-                    >
-                      <CardContent className="flex min-h-[112px] flex-col items-center justify-start p-4 text-center">
+                {featureCards.map((card) => {
+                  const cardContent = (
+                    <Card className="rounded-xl border border-solid border-[#cfc4c5] bg-[#eff4ff] shadow-none">
+                      <CardContent className="flex items-center gap-4 p-4">
                         <img
-                          className="mb-2 h-auto w-auto flex-[0_0_auto]"
+                          className="h-12 w-12 shrink-0"
                           alt={card.alt}
                           src={card.icon}
                         />
-                        <h3 className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-xs font-medium leading-4 tracking-[0.60px] text-[#0b1c30]">
-                          {card.title}
-                        </h3>
-                        <p className="pt-[2.88px] [font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-[11px] font-medium leading-[13.8px] tracking-[0] text-[#4c4546]">
-                          {card.description[0]}
-                          <br />
-                          {card.description[1]}
-                        </p>
+                        <div className="flex flex-col">
+                          <h2 className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-base font-medium leading-6 tracking-[0] text-[#0b1c30]">
+                            {card.title}
+                          </h2>
+                          <p className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-sm font-medium leading-5 tracking-[0] text-[#4c4546]">
+                            {card.description[0]}
+                            <br />
+                            {card.description[1]}
+                          </p>
+                        </div>
                       </CardContent>
                     </Card>
-                  ))}
+                  );
+
+                  if (card.href) {
+                    return (
+                      <a
+                        key={card.title}
+                        href={card.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        {cardContent}
+                      </a>
+                    );
+                  }
+
+                  return <div key={card.title}>{cardContent}</div>;
+                })}
+
+                <div className="grid grid-cols-2 gap-4">
+                  {miniCards.map((card) => {
+                    const cardContent = (
+                      <Card className="rounded-xl border border-solid border-[#cfc4c5] bg-[#eff4ff] shadow-none">
+                        <CardContent className="flex min-h-[112px] flex-col items-center justify-start p-4 text-center">
+                          <img
+                            className="mb-2 h-auto w-auto flex-[0_0_auto]"
+                            alt={card.alt}
+                            src={card.icon}
+                          />
+                          <h3 className="[font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-xs font-medium leading-4 tracking-[0.60px] text-[#0b1c30]">
+                            {card.title}
+                          </h3>
+                          <p className="pt-[2.88px] [font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-[11px] font-medium leading-[13.8px] tracking-[0] text-[#4c4546]">
+                            {card.description[0]}
+                            <br />
+                            {card.description[1]}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    );
+
+                    if (card.href) {
+                      return (
+                        <a
+                          key={card.title}
+                          href={card.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          {cardContent}
+                        </a>
+                      );
+                    }
+
+                    return <div key={card.title}>{cardContent}</div>;
+                  })}
                 </div>
               </section>
             </section>
             <footer className="mt-auto pt-3">
               <div className="bg-[linear-gradient(0deg,rgba(255,255,255,1)_0%,rgba(255,255,255,1)_50%,rgba(255,255,255,0)_100%)] pt-6 pb-5">
                 <div className="flex flex-col gap-3">
-                  <Button className="h-auto w-full rounded-xl bg-black px-6 py-4 [font-family:'Abel',Helvetica] text-base font-normal leading-6 text-white shadow-[0px_8px_10px_-6px_#0000001a,0px_20px_25px_-5px_#0000001a] hover:bg-black">
-                    <span>내 피부 타입 찾기</span>
-    
-                  </Button>
-                  <button
-                    type="button"
-                    className="flex h-10 w-full items-center justify-center px-0 pt-[11.5px] pb-[12.5px] [font-family:'WenQuanYi_Zen_Hei-Medium',Helvetica] text-xs font-medium leading-4 tracking-[0.60px] text-[#4c4546]"
-                  >
-                    설문 없이 제품 둘러보기
-                  </button>
+                  {ctaButtons.map((button) =>
+                    button.href ? (
+                      <a
+                        key={button.label}
+                        href={button.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="h-auto w-full rounded-xl bg-black px-6 py-4 [font-family:'Abel',Helvetica] text-base font-normal leading-6 text-white shadow-[0px_8px_10px_-6px_#0000001a,0px_20px_25px_-5px_#0000001a] hover:bg-black text-center"
+                      >
+                        {button.label}
+                      </a>
+                    ) : (
+                      <Button
+                        key={button.label}
+                        className="h-auto w-full rounded-xl bg-black px-6 py-4 [font-family:'Abel',Helvetica] text-base font-normal leading-6 text-white shadow-[0px_8px_10px_-6px_#0000001a,0px_20px_25px_-5px_#0000001a] hover:bg-black"
+                      >
+                        <span>{button.label}</span>
+                      </Button>
+                    ),
+                  )}
                 </div>
               </div>
             </footer>
