@@ -1,18 +1,21 @@
 import { XIcon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
+import kidImage from "./kid.jpg";
+import smileImage from "./smile.jpg";
+import parkjyImage from "./parkjy.jpg";
 
 const featureCards = [
   {
     title: "1분 피부 고민 체크",
     description: ["나의 피부 타입과 고민을 정밀하게 분석", "합니다."],
-    icon: "src/screens\Screen/kid.jpg",
+    icon: kidImage,
     alt: "Background",
   },
   {
     title: "입문자용 제품만 추천",
     description: ["복잡한 단계 없이 꼭 필요한 필수템만 골", "라드려요."],
-    icon: "src/screens/Screen/kid.jpg",
+    icon: kidImage,
     alt: "Background border",
   },
 ];
@@ -21,7 +24,7 @@ const miniCards = [
   {
     title: "매장 테스트",
     description: ["무신사 뷰티 스토어에서 바", "로 확인"],
-    icon: "src/screens/Screen/smile.jpg",
+    icon: smileImage,
     alt: "Margin",
   },
 
@@ -29,7 +32,7 @@ const miniCards = [
   {
     title: "샘플 후 재구매",
     description: ["샘플 써보고 앱에서 편하게", "결제"],
-    icon: "src/screens/Screen/smile.jpg",
+    icon: smileImage,
     alt: "Margin",
   },
 ];
@@ -39,7 +42,10 @@ export const Screen = (): JSX.Element => {
     <main className="min-h-screen w-full bg-[linear-gradient(0deg,rgba(248,249,255,1)_0%,rgba(248,249,255,1)_100%),linear-gradient(0deg,rgba(255,255,255,1)_0%,rgba(255,255,255,1)_100%)]">
       <div className="mx-auto flex min-h-screen w-full max-w-[390px] justify-center px-0">
         <section className="relative flex min-h-screen w-full flex-col overflow-hidden bg-white shadow-[0px_25px_50px_-12px_#00000040]">
-          <div className="pointer-events-none absolute inset-0 opacity-20 bg-[url(/image.png)] bg-cover bg-[50%_50%]" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-20 bg-cover bg-[50%_50%]"
+            style={{ backgroundImage: `url(${parkjyImage})` }}
+          />
           <header className="relative z-10 flex items-center justify-between px-5 py-7 bg-[#ffffffcc] backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)]">
             <h1 className="flex items-center [font-family:'Manrope',Helvetica] text-xl font-normal leading-7 tracking-[-1.00px] text-transparent">
               <span className="font-extrabold tracking-[-0.20px] text-[#0b1c30]">
@@ -72,7 +78,10 @@ export const Screen = (): JSX.Element => {
               </div>
               <Card className="overflow-hidden rounded-2xl border-0 bg-[#e5eeff] shadow-[0px_1px_2px_#0000000d]">
                 <CardContent className="relative h-[340px] p-0">
-                  <div className="h-full w-full bg-[url(src\screens\Screen\parkjy.jpg)] bg-cover bg-[50%_50%]" />
+                  <div
+                    className="h-full w-full bg-cover bg-[50%_50%]"
+                    style={{ backgroundImage: `url(${parkjyImage})` }}
+                  />
                   <a href="https://www.musinsa.com/main/beauty/recommend?gf=A" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" />
                   <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(203,219,245,0.2)_0%,rgba(203,219,245,0)_100%)]" />
                   <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 shadow-[0px_4px_6px_-4px_#0000001a,0px_10px_15px_-3px_#0000001a]">
